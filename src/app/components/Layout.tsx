@@ -1,7 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { Plus, User, ChevronDown, Menu, X, LayoutDashboard, Users, Briefcase, FileText, ClipboardList, XCircle, Star, BarChart2, ChevronRight } from "lucide-react";
+import { User, ChevronDown, Menu, X, LayoutDashboard, Users, Briefcase, FileText, ClipboardList, XCircle, Star, BarChart2, ChevronRight, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
-import { AddCandidateModal } from "./AddCandidateModal";
 
 const NAV_ITEMS = [
   { path: "/", label: "Pipeline", icon: LayoutDashboard },
@@ -11,16 +10,16 @@ const NAV_ITEMS = [
 ];
 
 const REPORT_ITEMS = [
+  { path: "/relatorios", label: "Dashboard Analítico", icon: TrendingUp, highlight: true },
   { path: "/relatorios/vagas", label: "Relatório de Vagas", icon: BarChart2 },
   { path: "/relatorios/candidatos", label: "Relatório de Candidatos", icon: FileText },
-  { path: "/relatorios/avaliacao", label: "Avaliação de Candidatos", icon: ClipboardList, highlight: true },
+  { path: "/relatorios/avaliacao", label: "Avaliação de Candidatos", icon: ClipboardList },
   { path: "/reprovados", label: "Reprovados", icon: XCircle },
   { path: "/banco-talentos", label: "Banco de Talentos", icon: Star },
 ];
 
 export function Layout() {
   const location = useLocation();
-  const [showAddModal, setShowAddModal] = useState(false);
   const [showReportsMenu, setShowReportsMenu] = useState(false);
   const [showMobileDrawer, setShowMobileDrawer] = useState(false);
   const [showMobileReports, setShowMobileReports] = useState(false);
@@ -103,7 +102,7 @@ export function Layout() {
                   <div className="absolute top-full left-0 mt-1 bg-white border border-border rounded-xl shadow-xl py-1.5 z-20 min-w-[230px]">
                     {REPORT_ITEMS.map((item, i) => (
                       <div key={item.path}>
-                        {i === 3 && <div className="h-px bg-border my-1" />}
+                        {i === 4 && <div className="h-px bg-border my-1" />}
                         <Link
                           to={item.path}
                           onClick={() => setShowReportsMenu(false)}
@@ -136,13 +135,6 @@ export function Layout() {
           >
             <User className="w-4 h-4" />
           </Link>
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 text-sm px-3 md:px-4 py-2 bg-foreground text-background rounded-xl font-bold hover:opacity-80 transition-all shrink-0"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Adicionar</span>
-          </button>
         </div>
       </header>
 
@@ -217,7 +209,7 @@ export function Layout() {
                       const active = location.pathname === item.path;
                       return (
                         <div key={item.path}>
-                          {i === 3 && <div className="h-px bg-border my-1.5" />}
+                          {i === 4 && <div className="h-px bg-border my-1.5" />}
                           <Link
                             to={item.path}
                             className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-colors ${
@@ -252,13 +244,6 @@ export function Layout() {
                 <User style={{ width: 18, height: 18 }} className="shrink-0" />
                 Configurações
               </Link>
-              <button
-                onClick={() => { setShowMobileDrawer(false); setShowAddModal(true); }}
-                className="mt-2 w-full flex items-center justify-center gap-2 py-3 bg-foreground text-background rounded-xl text-sm font-bold hover:opacity-90 transition-all"
-              >
-                <Plus className="w-4 h-4" />
-                Adicionar Candidato
-              </button>
             </div>
           </div>
         </div>
@@ -268,7 +253,6 @@ export function Layout() {
         <Outlet />
       </main>
 
-      <AddCandidateModal open={showAddModal} onClose={() => setShowAddModal(false)} />
     </div>
   );
 }

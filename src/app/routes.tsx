@@ -12,6 +12,7 @@ import { CandidatesReport } from "./pages/CandidatesReport";
 import { CandidateTimeline } from "./pages/CandidateTimeline";
 import { Test } from "./pages/Test";
 import { CandidateEvaluationReport } from "./pages/CandidateEvaluationReport";
+import { Reports } from "./pages/Reports";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: "candidatos/:candidateId/timeline", Component: CandidateTimeline },
       { path: "vagas", Component: Jobs },
       { path: "vagas/:jobId", Component: JobReport },
+      { path: "relatorios", Component: Reports },
       { path: "relatorios/vagas", Component: JobsReport },
       { path: "relatorios/candidatos", Component: CandidatesReport },
       { path: "relatorios/avaliacao", Component: CandidateEvaluationReport },

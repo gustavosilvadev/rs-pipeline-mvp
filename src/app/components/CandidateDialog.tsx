@@ -28,6 +28,7 @@ interface Props {
 }
 
 const ADVANCE_OPTIONS = [
+  { id: "screening", label: "Triagem", dotColor: "#F59E0B" },
   { id: "assessment", label: "Avaliação", dotColor: "#8B5CF6" },
   { id: "interview", label: "Entrevista", dotColor: "#3B82F6" },
   { id: "hired", label: "Contratado", dotColor: "#16A34A" },
@@ -464,7 +465,7 @@ export function CandidateDialog({ entry, onClose, onAdvance, onDecline }: Props)
                         className="w-full appearance-none bg-white border-2 rounded-lg px-4 py-2.5 pr-10 text-sm font-semibold focus:outline-none transition-colors cursor-pointer"
                         style={{ borderColor: `${selectedOption.dotColor}66`, color: selectedOption.dotColor }}
                       >
-                        {ADVANCE_OPTIONS.map((opt) => (
+                        {ADVANCE_OPTIONS.filter((opt) => opt.id !== stageId).map((opt) => (
                           <option key={opt.id} value={opt.id} style={{ color: opt.dotColor }}>
                             {opt.label}
                           </option>

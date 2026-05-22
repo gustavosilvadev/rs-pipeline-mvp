@@ -125,25 +125,26 @@ export function CandidateEvaluationReport() {
 
   return (
     <div className="h-full flex flex-col overflow-hidden bg-slate-50">
-      <div className="shrink-0 bg-white border-b border-border px-6 py-4">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h1 className="text-2xl font-bold">Relatório de Avaliação de Candidatos</h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              Avaliação detalhada de competências dos candidatos em entrevista
+      <div className="shrink-0 bg-white border-b border-border px-4 md:px-6 py-4">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+          <div className="min-w-0">
+            <h1 className="text-lg md:text-2xl font-bold leading-snug">Avaliação de Candidatos</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              Competências dos candidatos em entrevista
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleExport}
-              className="flex items-center gap-2 text-sm px-4 py-2 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all"
+              className="flex items-center gap-1.5 text-sm px-3 md:px-4 py-2 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all"
             >
               <Download className="w-4 h-4" />
-              Exportar Excel
+              <span className="hidden sm:inline">Exportar Excel</span>
+              <span className="sm:hidden">Excel</span>
             </button>
             <button
               onClick={handleSave}
-              className={`flex items-center gap-2 text-sm px-4 py-2 rounded-xl font-bold transition-all ${
+              className={`flex items-center gap-1.5 text-sm px-3 md:px-4 py-2 rounded-xl font-bold transition-all ${
                 saved
                   ? "bg-green-600 text-white"
                   : "bg-foreground text-background hover:opacity-80"
@@ -152,12 +153,12 @@ export function CandidateEvaluationReport() {
               {saved ? (
                 <>
                   <CheckCircle className="w-4 h-4" />
-                  Salvo!
+                  <span className="hidden sm:inline">Salvo!</span>
                 </>
               ) : (
                 <>
                   <Save className="w-4 h-4" />
-                  Salvar Avaliações
+                  <span className="hidden sm:inline">Salvar</span>
                 </>
               )}
             </button>
