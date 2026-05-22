@@ -262,16 +262,20 @@ export function CandidateDialog({ entry, onClose, onAdvance, onDecline }: Props)
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50" />
         <Dialog.Content
-          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 flex flex-col justify-end md:items-center md:justify-center z-50 md:p-4"
           aria-describedby={undefined}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl w-full overflow-hidden flex flex-col relative"
-            style={{ maxWidth: 680, maxHeight: "90vh" }}
+            className="bg-white rounded-t-2xl md:rounded-2xl shadow-2xl w-full overflow-hidden flex flex-col relative"
+            style={{ maxWidth: 680, maxHeight: "92vh" }}
           >
+            {/* Mobile drag handle */}
+            <div className="md:hidden flex justify-center pt-3 pb-0 shrink-0">
+              <div className="w-10 h-1 rounded-full bg-slate-200" />
+            </div>
             {/* ── Scheduling overlay ── */}
             {showScheduler && (
-              <div className="absolute inset-0 bg-white z-10 flex flex-col rounded-2xl">
+              <div className="absolute inset-0 bg-white z-10 flex flex-col rounded-t-2xl md:rounded-2xl">
                 <div className="flex items-center gap-3 px-6 py-4 border-b border-border shrink-0">
                   <button
                     onClick={() => setShowScheduler(false)}
